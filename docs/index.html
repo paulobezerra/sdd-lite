@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDD Lite — spec-driven development as one agent skill</title>
+<meta name="description" content="Lightweight spec-driven development for any project: init, feature, spec, plan, bug, code, review. Install once, use everywhere.">
+<style>
+:root{--bg:#0b0d12;--panel:#141824;--panel2:#1a2030;--line:#262d40;--fg:#e8ebf3;--mut:#9aa4bd;--acc:#7c9cff;--acc2:#5eead4;--warn:#fbbf24;--code:#0f1320}
+@media (prefers-color-scheme:light){:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f0f2f8;--line:#dde1ec;--fg:#151a29;--mut:#5a647d;--acc:#3b5bdb;--acc2:#0d9488;--warn:#b45309;--code:#eef1f8}}
+:root[data-theme=dark]{--bg:#0b0d12;--panel:#141824;--panel2:#1a2030;--line:#262d40;--fg:#e8ebf3;--mut:#9aa4bd;--acc:#7c9cff;--acc2:#5eead4;--warn:#fbbf24;--code:#0f1320}
+:root[data-theme=light]{--bg:#f7f8fb;--panel:#fff;--panel2:#f0f2f8;--line:#dde1ec;--fg:#151a29;--mut:#5a647d;--acc:#3b5bdb;--acc2:#0d9488;--warn:#b45309;--code:#eef1f8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+code{background:var(--code);border:1px solid var(--line);padding:.08em .38em;border-radius:6px;font-size:.88em}
+pre{background:var(--code);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.9rem;margin:0}
+pre code{background:none;border:0;padding:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:58px}
+nav b{font-size:1.05rem;letter-spacing:-.01em}nav b span{color:var(--acc)}
+nav .links{display:flex;gap:18px;margin-left:auto;font-size:.92rem}
+nav .links a{color:var(--mut)}nav .links a:hover{color:var(--fg);text-decoration:none}
+button.t{background:var(--panel);border:1px solid var(--line);color:var(--fg);border-radius:9px;padding:5px 10px;cursor:pointer;font-size:.85rem}
+.hero{padding:84px 0 56px;text-align:center}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--panel);color:var(--mut);padding:4px 13px;border-radius:99px;font-size:.82rem}
+h1{font-size:clamp(2.2rem,6vw,3.9rem);line-height:1.08;letter-spacing:-.035em;margin:20px 0 16px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:690px;margin:0 auto 30px;color:var(--mut);font-size:1.15rem}
+.install{max-width:520px;margin:0 auto;display:flex;gap:8px;align-items:center;background:var(--code);border:1px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;text-align:left}
+.install code{background:none;border:0;font-size:.95rem;flex:1;white-space:nowrap;overflow:auto;padding:0}
+.install button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:7px 13px;cursor:pointer;font-weight:600}
+section{padding:52px 0;border-top:1px solid var(--line)}
+h2{font-size:1.75rem;letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--mut);margin:0 0 28px;max-width:720px}
+.grid{display:grid;gap:14px}.g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(440px,1fr))}
+@media(max-width:560px){.g2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{margin:0 0 6px;font-size:1.05rem}.card p{margin:0;color:var(--mut);font-size:.95rem}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.step{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:600;font-size:.92rem}
+.step.gate{border-color:var(--acc)}.step.new{border-color:var(--acc2)}
+.arrow{color:var(--mut)}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acc2)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:.93rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--mut);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+.tree{font-size:.88rem;line-height:1.6}
+.tree .c{color:var(--mut)}
+ol.steps{padding-left:20px;margin:0}ol.steps li{margin:0 0 10px}
+.note{border-left:3px solid var(--warn);background:var(--panel);border-radius:0 10px 10px 0;padding:12px 16px;color:var(--mut);font-size:.94rem}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}details p{color:var(--mut);margin:10px 0 0}
+footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);text-align:center;font-size:.9rem}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <b>SDD <span>Lite</span></b>
+  <div class="links"><a href="#install">Install</a><a href="#flows">Flows</a><a href="#commands">Commands</a><a href="#rules">Rules</a><a href="#artifacts">Artifacts</a><a href="https://github.com/paulobezerra/sdd-lite">GitHub</a></div>
+  <button class="t" id="theme" aria-label="Toggle theme">◐</button>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="pill">One global skill · any project · any agent</span>
+  <h1>Spec-driven development,<br><em>without the ceremony</em></h1>
+  <p class="lead">SDD Lite turns a request into a verified delivery through small, auditable steps. Install it once and run <code>$sdd-lite &lt;command&gt;</code> in every repository.</p>
+  <div class="install"><code id="cmd">npx skills add paulobezerra/sdd-lite -g</code><button id="copy">Copy</button></div>
+</div></header>
+
+<section id="install"><div class="wrap">
+  <h2>Get started in three steps</h2>
+  <p class="sub">The skill is project-agnostic. Everything about <em>your</em> project is generated by <code>init</code> and lives in your repository.</p>
+  <div class="grid g3">
+    <div class="card"><span class="tag">1 · Install</span><h3>Once, globally</h3><p>Run the command above. The skill is available to every project and every agent that supports skills.</p></div>
+    <div class="card"><span class="tag">2 · Init</span><h3><code>$sdd-lite init</code></h3><p>In an empty project it interviews you; in an existing one it analyzes the code. It writes the project context and the implementation conventions.</p></div>
+    <div class="card"><span class="tag">3 · Work</span><h3>Feature or bug</h3><p>Use <code>feature</code> for new capabilities and <code>bug</code> for pinpoint defects. Start each step with a clean context.</p></div>
+  </div>
+  <p class="sub" style="margin-top:22px">Syntax: <code>$sdd-lite &lt;command&gt; [ID or free text]</code> in Codex, <code>/sdd-lite &lt;command&gt; …</code> in Claude Code and similar agents. With no command, the skill lists the options.</p>
+</div></section>
+
+<section id="flows"><div class="wrap">
+  <h2>Two flows, one rule set</h2>
+  <p class="sub">Pick the flow by the nature of the work. <code>code</code> and <code>review</code> serve both: the ID prefix (<code>T…</code> feature task, <code>B…</code> bug task) tells them where to work.</p>
+  <div class="grid g2">
+    <div class="card">
+      <span class="tag">Feature</span><h3>New capability or behavior change</h3>
+      <div class="flow"><span class="step">feature</span><span class="arrow">→</span><span class="step">spec</span><span class="arrow">→</span><span class="step">plan</span><span class="arrow">→</span><span class="step">code</span><span class="arrow">→</span><span class="step">review</span></div>
+      <p>Four artifacts: <code>feature</code>, <code>spec</code>, <code>plan</code>, <code>review</code>. You validate Feature, Spec and Plan explicitly before the next step. Spec compares real technical alternatives and waits for your choice.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Bug</span><h3>Pinpoint defect, local fix</h3>
+      <div class="flow"><span class="step new">bug</span><span class="arrow">→</span><span class="step">code</span><span class="arrow">→</span><span class="step">review</span></div>
+      <p>Two artifacts: <code>bug</code> and <code>review</code>. One validation instead of three. <code>bug</code> triages first and redirects to the feature flow when the problem is not truly pinpoint, so it saves tokens without hiding real design work.</p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:22px">Bug qualifies only if existing behavior contradicts a clear expectation, the cause is local, and the fix needs no contract change, migration, or design choice.</p>
+</div></section>
+
+<section id="commands"><div class="wrap">
+  <h2>Commands</h2>
+  <p class="sub">Each command reads only its own instructions, so a session loads just what it needs.</p>
+  <div class="scroll"><table>
+    <tr><th>Command</th><th>What it does</th><th>Writes</th></tr>
+    <tr><td><code>init</code></td><td>Creates or refreshes the project context and conventions. Interview mode for a new project, analysis mode for an existing one, refresh mode when files already exist. Separates observed facts from assumptions and never records secrets.</td><td><code>.specs/project-context.md</code><br><code>.specs/implementation.md</code></td></tr>
+    <tr><td><code>feature</code></td><td>Defines <em>why</em>, <em>for whom</em> and the expected outcome, with no architecture. Creates the <code>feature/NNN-name</code> branch.</td><td><code>features/NNN-name/feature.md</code></td></tr>
+    <tr><td><code>spec</code></td><td>Reads code and contracts, presents real alternatives with impact and risk, waits for your choice, then writes verifiable requirements.</td><td><code>…/spec.md</code></td></tr>
+    <tr><td><code>plan</code></td><td>Splits the spec into vertical, testable tasks (<code>TNNN-XX</code>) with acceptance, first-failing test and gate.</td><td><code>…/plan.md</code></td></tr>
+    <tr><td><code>bug</code></td><td>Triage, root-cause diagnosis with evidence, smallest fix and a regression-test task (<code>BNNN-XX</code>). Creates <code>fix/NNN-name</code>. Does not fix.</td><td><code>bugs/NNN-name/bug.md</code></td></tr>
+    <tr><td><code>code</code></td><td>Implements <strong>one</strong> task test-first, runs the gates and ticks the checklist. Never edits Feature, Spec or the bug diagnosis.</td><td>checkbox only</td></tr>
+    <tr><td><code>review</code></td><td>Audits delivery against the artifacts, the diff and the project conventions; re-audits corrections in the same file.</td><td><code>review.md</code> in the item folder</td></tr>
+  </table></div>
+</div></section>
+
+<section id="artifacts"><div class="wrap">
+  <h2>What lands in your repository</h2>
+  <p class="sub">The skill stays global and generic. Your project owns its knowledge in versioned, human-readable files.</p>
+  <div class="grid g2">
+<pre class="tree"><code>.specs/
+├─ project-context.md   <span class="c"># what the project is</span>
+├─ implementation.md    <span class="c"># how code is written here</span>
+├─ features/
+│  └─ 001-name/
+│     ├─ feature.md
+│     ├─ spec.md
+│     ├─ plan.md        <span class="c"># task checklist</span>
+│     └─ review.md
+└─ bugs/
+   └─ 001-name/
+      ├─ bug.md         <span class="c"># diagnosis + tasks</span>
+      └─ review.md</code></pre>
+    <div class="grid">
+      <div class="card"><h3><code>project-context.md</code></h3><p>Purpose, stack, structure, verified commands, authorization limits, current state and open questions. Read by every command.</p></div>
+      <div class="card"><h3><code>implementation.md</code></h3><p>Conventions on boundaries, contracts, security, data and testing. Each rule is <code>observed</code> (with evidence), <code>decided</code> (confirmed by you) or <code>assumption</code>; review enforces only the first two. Read by spec, code, bug and review.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <h2>Rules that keep it honest</h2>
+  <div class="grid g3">
+    <div class="card"><h3>Explicit validation</h3><p>Feature → Spec → Plan → Code (or Bug → Code) need your statement, recorded in the artifact with your name and the OS date. A checkbox or silence is not approval.</p></div>
+    <div class="card"><h3>Immutable inputs</h3><p>Spec never rewrites Feature, Plan never rewrites Spec, Code only ticks checkboxes, Review changes none of them. Divergences are recorded in the current artifact and await your approval.</p></div>
+    <div class="card"><h3>Clean context per step</h3><p>Each command starts from the artifacts and the real repository, not conversation memory. If context is dirty, you get a warning, never a block.</p></div>
+    <div class="card"><h3>Evidence, not claims</h3><p>Only checks actually run count. Code proves one task; the first review runs the full suite and gates. An unrun test is never reported as passed.</p></div>
+    <div class="card"><h3>Never blocks you</h3><p>Want to bend a rule? The agent explains the risk and the recommended path; if you insist, it proceeds and records the authorized exception.</p></div>
+    <div class="card"><h3>Safe by default</h3><p>No commit, push, deploy or destructive operation without your request. No secrets in artifacts. No subagents or loops without authorization.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>FAQ</h2>
+  <details><summary>Does it work with agents other than Codex?</summary><p>Yes. The rules live in plain Markdown that any agent can read. If an agent has no native command syntax, say “run sdd-lite &lt;command&gt;”.</p></details>
+  <details><summary>Do I have to run init?</summary><p>It is strongly recommended: other commands read the generated files. Without them they warn you and proceed only if you insist.</p></details>
+  <details><summary>Bug or feature, how do I choose?</summary><p>Run <code>bug</code> when something that should work is wrong and the fix is small and local. It triages for you and redirects to <code>feature</code> when a product decision, contract change or migration is involved.</p></details>
+  <details><summary>Where do project-specific rules go?</summary><p>In <code>.specs/implementation.md</code>, via <code>init</code>. Never inside a feature artifact, and never in the skill itself.</p></details>
+</div></section>
+
+<footer><div class="wrap">SDD Lite · <a href="https://github.com/paulobezerra/sdd-lite">github.com/paulobezerra/sdd-lite</a></div></footer>
+
+<script>
+const r=document.documentElement,k='sdd-theme',s=localStorage.getItem(k);if(s)r.dataset.theme=s;
+document.getElementById('theme').onclick=()=>{const d=r.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');const n=d==='dark'?'light':'dark';r.dataset.theme=n;localStorage.setItem(k,n)};
+document.getElementById('copy').onclick=e=>{navigator.clipboard.writeText(document.getElementById('cmd').textContent);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy',1400)};
+</script>
+</body>
+</html>

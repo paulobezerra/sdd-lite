@@ -1,0 +1,3 @@
+interface:
+  display_name: "SDD Lite"
+  short_description: "Spec-driven workflow: init, feature, spec, plan, code, bug, review"
