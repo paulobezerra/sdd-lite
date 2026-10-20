@@ -1,6 +1,6 @@
 # SPEC — <feature name>
 
-**ID:** NNN-name · **Status:** proposed · **Date:** YYYY-MM-DD
+**ID:** NNN-name · **Status:** decision pending | proposed · **Date:** YYYY-MM-DD
 
 **User validation for Plan:** pending. After an explicit statement, record it here with the user's supplied name and the date obtained from the OS, without changing requirements or decisions. The technical decision below is not validation.
 
@@ -14,9 +14,46 @@
 - **Out of scope:** <explicit boundaries>
 - **Constraints:** <compatibility, stack, deployment, dependencies, and relevant data; see project-context>
 
+## Decision brief — complete before asking the user to choose
+
+**Verified baseline:** <observed behavior and repository/code evidence>
+
+**Decision drivers:** <relevant Feature requirement IDs and constraints>
+
+### Option cards
+
+#### Option A — <name>
+
+- **Approach:** <what changes or stays>
+- **Affected components:** <components>
+- **Estimated code impact:** low | moderate | high
+- **Fit to Feature:** <requirement IDs and how this meets them>
+- **Benefits:** <concrete benefits>
+- **Costs and risks:** <concrete costs, risks, and implications>
+- **Constraints or conditions:** <conditions, or “None”>
+- **Evidence:** <repository paths, observed contracts, or authoritative sources>
+
+<Repeat for each real option; two or three materially different viable options by default. Do not invent options to reach a count.>
+
+### Viability matrix
+
+<Use only criteria relevant to this decision and add Feature-specific drivers as needed. Options are columns; criteria are rows. Add or remove option columns to match the real options. Every cell contains exactly one symbol and nothing else.>
+
+| Criterion | Option A | Option B |
+|---|---:|---:|
+| <relevant criterion / requirement ID> | ✓ | ⚠ |
+
+**Legend:** ✓ meets · ✗ does not meet · ⚠ partial or conditional fit. The option cards explain the evidence and implications behind every ⚠ and ✗. No scores or totals.
+
+**Recommendation (not approval):** <for multiple options, name the recommended option and decisive criteria; for one evident solution, state its evidence-based justification>
+
+**Decision requested:** <for multiple options, ask the user to choose or adjust; for one evident solution, write “None — proceed with the only viable solution.” This is not Spec validation.>
+
+<For a clearly evident single viable solution, state the verified evidence and why constraints rule out relevant alternatives; omit fake cards and matrix and proceed without asking the user to choose.>
+
 ## Technical solution
 
-**Technical decision:** <user's choice and date when meaningful alternatives exist; or clearly evident single solution, date, and code-based reason. Do not attribute a choice to the user without their statement.>
+**Technical decision:** <while pending, write “Pending user choice”; after choice, record the user's choice and date. For one clearly evident solution, give the date and code-based reason. Do not attribute a choice to the user without their statement.>
 
 <Summarize only real options: the clearly evident solution or the selected option and relevant alternatives, in separate blocks. For each, record estimated code impact (low, moderate, or high), affected components, and decision-relevant fit or caveats. Identify criteria that do not apply. Avoid extensive comparison without a real tradeoff.>
 
