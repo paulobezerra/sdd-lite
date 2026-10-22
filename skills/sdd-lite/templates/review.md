@@ -4,11 +4,11 @@
 
 ## Baseline and limits
 
-<Branch, diff, and commit examined; whether publication was proven; tests run and not run. Separate observation, test, and inference.>
+<Branch, diff, and commit examined; whether publication was proven; relevant execution entries checked against approved criteria, changed paths, and actual checks; tests run and not run. Separate observation, test, and inference.>
 
 ## Verified requirements
 
-<For each requirement: Plan task, observed behavior, evidence, and actual pending work. Check the checklist against code and tests.>
+<For each requirement: Plan task (or Bug task), observed behavior, execution-record claim where relevant, independent evidence, and actual pending work. Check claims and task criteria against code, diff, and applicable checks.>
 
 ## Findings
 

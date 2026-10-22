@@ -2,7 +2,7 @@
 
 Validation checks the implemented scope and the risks at its boundaries. Consult the commands and limits in `.specs/project-context.md` and the testing and contract conventions in `.specs/implementation.md` before running checks; do not assume that required services or tools are available. The Plan defines acceptance, focused tests, and applicable gates for each task. Code proves that task; the first Review validates the feature as a whole.
 
-In the [Code](workflow.md) step, record a red and green test for new or corrected behavior. Before refactoring, use characterization tests to capture the existing contract that must remain.
+In the [Code](workflow.md) step, record a red and green test for new or corrected behavior. Before refactoring, use characterization tests to capture the existing contract that must remain. Code records each attempt, changed paths, checks, results, limits, and handoff in the feature or bug folder's `execution.md`; its latest status must match the user-facing delivery.
 
 ## During implementation
 
@@ -27,3 +27,5 @@ An aggregate gate verifies the feature across tasks; it does not replace focused
 | Documentation/guidelines only | Check links, examples, consistency with current commands, and diff; run any explicitly applicable gates and record limits. |
 
 Record checks **actually run**, results, relevant environment, and limits. Distinguish product failures from environment blocks and follow the repository's execution instructions for retries. A failing applicable gate prevents marking the task complete or Review accepted. An unrun test is not a pass; explain residual risk and whether it blocks acceptance. Do not repeat a passed gate without a change or concrete doubt.
+
+For Code, begin each execution entry as `PENDING` and mark it `SUCCESS` only after all acceptance criteria and applicable gates pass. If work remains, record the blocker, remaining work, and next step; continue recoverable work that stays within scope. Keep prior attempts intact, and resume the latest pending ID before beginning a later one. Review verifies recorded claims against the approved task, changed files, diff, and applicable checks.

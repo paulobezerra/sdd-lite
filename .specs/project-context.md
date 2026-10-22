@@ -1,6 +1,6 @@
 # PROJECT CONTEXT — SDD Lite
 
-**Updated:** 2026-10-17 · **Origin:** existing project (analyzed) · **Artifact language:** English (`assumption`, following the existing documentation)
+**Updated:** 2026-10-22 · **Origin:** existing project (analyzed) · **Artifact language:** English (`assumption`, following the existing documentation)
 
 ## Purpose
 
@@ -34,7 +34,7 @@ Do not commit, push, publish, deploy, send messages, or perform destructive oper
 
 ## Current state and known risks
 
-- The seven command procedures, four shared guidelines, and seven artifact templates are present; the README and one-page site describe the workflow.
+- The seven command procedures, four shared guidelines, and eight artifact templates are present; the README and one-page site describe the workflow. Feature workflows use five files (`feature.md`, `spec.md`, `plan.md`, `execution.md`, `review.md`); bug workflows use three (`bug.md`, `execution.md`, `review.md`).
 - No automated tests or CI gate are present, so documentation and cross-file consistency are not automatically checked.
 - The README's GitHub Pages publishing instructions describe a manual setup; its live configuration was not verified.
 
