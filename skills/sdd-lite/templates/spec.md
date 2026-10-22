@@ -18,7 +18,7 @@
 
 **Verified baseline:** <observed behavior and repository/code evidence>
 
-**Decision drivers:** <relevant Feature requirement IDs and constraints>
+**Feature decision drivers:** <desired outcomes, scope boundaries, hard constraints, priorities, and explicit preferences; identify which are hard constraints and cite relevant Feature requirement IDs>
 
 ### Option cards
 
@@ -27,17 +27,17 @@
 - **Approach:** <what changes or stays>
 - **Affected components:** <components>
 - **Estimated code impact:** low | moderate | high
-- **Fit to Feature:** <requirement IDs and how this meets them>
+- **Fit to Feature:** <requirement IDs and how this meets them; explicitly state any partial or failed fit and its evidence>
 - **Benefits:** <concrete benefits>
 - **Costs and risks:** <concrete costs, risks, and implications>
 - **Constraints or conditions:** <conditions, or “None”>
 - **Evidence:** <repository paths, observed contracts, or authoritative sources>
 
-<Repeat for each real option; two or three materially different viable options by default. Do not invent options to reach a count.>
+<Repeat for each real, materially different option that satisfies every hard constraint; two or three viable options by default when meaningful tradeoffs exist. Do not invent options to reach a count.>
 
 ### Viability matrix
 
-<Use only criteria relevant to this decision and add Feature-specific drivers as needed. Options are columns; criteria are rows. Add or remove option columns to match the real options. Every cell contains exactly one symbol and nothing else.>
+<For multiple viable options only: include the matrix below using relevant, decision-distinguishing Feature criteria as rows and viable options as columns. Add or remove columns to match the real options. Every cell contains exactly one symbol and nothing else. Omit this entire section when only one option is viable or no option fits.>
 
 | Criterion | Option A | Option B |
 |---|---:|---:|
@@ -45,11 +45,11 @@
 
 **Legend:** ✓ meets · ✗ does not meet · ⚠ partial or conditional fit. The option cards explain the evidence and implications behind every ⚠ and ✗. No scores or totals.
 
-**Recommendation (not approval):** <for multiple options, name the recommended option and decisive criteria; for one evident solution, state its evidence-based justification>
+**Recommendation (not approval):** <for multiple options, recommend only an option compatible with all hard constraints and explicit preferences; name decisive Feature criteria and accepted tradeoffs. If no option fits, state that and ask the minimum decision. For one evident solution, state its evidence-based justification and why relevant alternatives fail.>
 
-**Decision requested:** <for multiple options, ask the user to choose or adjust; for one evident solution, write “None — proceed with the only viable solution.” This is not Spec validation.>
+**Decision requested:** <for multiple options, ask the user to choose or adjust; if no option fits, ask only the decision needed to resolve the conflict; for one evident solution, write “None — proceed with the only viable solution.” This is not Spec validation.>
 
-<For a clearly evident single viable solution, state the verified evidence and why constraints rule out relevant alternatives; omit fake cards and matrix and proceed without asking the user to choose.>
+<When only one solution is viable, state verified evidence and why hard constraints rule out relevant alternatives; omit fake cards and matrix. Present this explanation in the user-facing delivery too, and proceed without asking the user to choose. For multiple viable options, the delivery must reproduce the complete cards and matrix from this brief before asking for a choice.>
 
 ## Technical solution
 

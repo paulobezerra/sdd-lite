@@ -90,12 +90,12 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
     <div class="card">
       <span class="tag">Feature</span><h3>New capability or behavior change</h3>
       <div class="flow"><span class="step">feature</span><span class="arrow">→</span><span class="step">spec</span><span class="arrow">→</span><span class="step">plan</span><span class="arrow">→</span><span class="step">code</span><span class="arrow">→</span><span class="step">review</span></div>
-      <p>Four artifacts: <code>feature</code>, <code>spec</code>, <code>plan</code>, <code>review</code>. You validate Feature, Spec and Plan explicitly before the next step. Spec compares real technical alternatives and waits for your choice.</p>
+      <p>Five artifacts: <code>feature</code>, <code>spec</code>, <code>plan</code>, <code>execution</code>, <code>review</code>. You validate Feature, Spec and Plan explicitly before the next step. Spec grounds recommendations in Feature constraints and presents complete option cards and a viability matrix when multiple options fit.</p>
     </div>
     <div class="card">
       <span class="tag">Bug</span><h3>Pinpoint defect, local fix</h3>
       <div class="flow"><span class="step new">bug</span><span class="arrow">→</span><span class="step">code</span><span class="arrow">→</span><span class="step">review</span></div>
-      <p>Two artifacts: <code>bug</code> and <code>review</code>. One validation instead of three. <code>bug</code> triages first and redirects to the feature flow when the problem is not truly pinpoint, so it saves tokens without hiding real design work.</p>
+      <p>Three artifacts: <code>bug</code>, <code>execution</code>, and <code>review</code>. One validation instead of three. <code>bug</code> triages first and redirects to the feature flow when the problem is not truly pinpoint, so it saves tokens without hiding real design work.</p>
     </div>
   </div>
   <p class="sub" style="margin-top:22px">Bug qualifies only if existing behavior contradicts a clear expectation, the cause is local, and the fix needs no contract change, migration, or design choice.</p>
@@ -108,11 +108,11 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
     <tr><th>Command</th><th>What it does</th><th>Writes</th></tr>
     <tr><td><code>init</code></td><td>Creates or refreshes the project context and conventions. Interview mode for a new project, analysis mode for an existing one, refresh mode when files already exist. Separates observed facts from assumptions and never records secrets.</td><td><code>.specs/project-context.md</code><br><code>.specs/implementation.md</code></td></tr>
     <tr><td><code>feature</code></td><td>Defines <em>why</em>, <em>for whom</em> and the expected outcome, with no architecture. Creates the <code>feature/NNN-name</code> branch.</td><td><code>features/NNN-name/feature.md</code></td></tr>
-    <tr><td><code>spec</code></td><td>Reads code and contracts, presents real alternatives with impact and risk, waits for your choice, then writes verifiable requirements.</td><td><code>…/spec.md</code></td></tr>
+    <tr><td><code>spec</code></td><td>Grounds its recommendation in Feature outcomes and constraints. For multiple viable approaches it presents complete option cards and a viability matrix; for one viable approach it gives evidence for excluding alternatives.</td><td><code>…/spec.md</code></td></tr>
     <tr><td><code>plan</code></td><td>Splits the spec into vertical, testable tasks (<code>TNNN-XX</code>) with acceptance, first-failing test and gate.</td><td><code>…/plan.md</code></td></tr>
     <tr><td><code>bug</code></td><td>Triage, root-cause diagnosis with evidence, smallest fix and a regression-test task (<code>BNNN-XX</code>). Creates <code>fix/NNN-name</code>. Does not fix.</td><td><code>bugs/NNN-name/bug.md</code></td></tr>
-    <tr><td><code>code</code></td><td>Implements <strong>one</strong> task test-first, runs the gates and ticks the checklist. Never edits Feature, Spec or the bug diagnosis.</td><td>checkbox only</td></tr>
-    <tr><td><code>review</code></td><td>Audits delivery against the artifacts, the diff and the project conventions; re-audits corrections in the same file.</td><td><code>review.md</code> in the item folder</td></tr>
+    <tr><td><code>code</code></td><td>Implements <strong>one</strong> task, continues in-scope work, and records <code>PENDING</code> or <code>SUCCESS</code>, evidence, and any handoff. It does not edit stage-owned contracts.</td><td>appends to <code>execution.md</code> in the item folder</td></tr>
+    <tr><td><code>review</code></td><td>Independently checks execution claims against approved criteria, code, diff, and applicable checks; re-audits corrections in the same file.</td><td><code>review.md</code> in the item folder</td></tr>
   </table></div>
 </div></section>
 
@@ -127,11 +127,13 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
 │  └─ 001-name/
 │     ├─ feature.md
 │     ├─ spec.md
-│     ├─ plan.md        <span class="c"># task checklist</span>
+│     ├─ plan.md        <span class="c"># task contracts</span>
+│     ├─ execution.md   <span class="c"># Code status, evidence, handoff</span>
 │     └─ review.md
 └─ bugs/
    └─ 001-name/
       ├─ bug.md         <span class="c"># diagnosis + tasks</span>
+      ├─ execution.md   <span class="c"># Code status, evidence, handoff</span>
       └─ review.md</code></pre>
     <div class="grid">
       <div class="card"><h3><code>project-context.md</code></h3><p>Purpose, stack, structure, verified commands, authorization limits, current state and open questions. Read by every command.</p></div>
@@ -144,7 +146,7 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
   <h2>Rules that keep it honest</h2>
   <div class="grid g3">
     <div class="card"><h3>Explicit validation</h3><p>Feature → Spec → Plan → Code (or Bug → Code) need your statement, recorded in the artifact with your name and the OS date. A checkbox or silence is not approval.</p></div>
-    <div class="card"><h3>Immutable inputs</h3><p>Spec never rewrites Feature, Plan never rewrites Spec, Code only ticks checkboxes, Review changes none of them. Divergences are recorded in the current artifact and await your approval.</p></div>
+    <div class="card"><h3>Immutable inputs</h3><p>Each stage preserves approved contracts. Code records status, changed paths, checks, and handoff in <code>execution.md</code>; Review independently verifies those claims and records findings in <code>review.md</code>.</p></div>
     <div class="card"><h3>Clean context per step</h3><p>Each command starts from the artifacts and the real repository, not conversation memory. If context is dirty, you get a warning, never a block.</p></div>
     <div class="card"><h3>Evidence, not claims</h3><p>Only checks actually run count. Code proves one task; the first review runs the full suite and gates. An unrun test is never reported as passed.</p></div>
     <div class="card"><h3>Never blocks you</h3><p>Want to bend a rule? The agent explains the risk and the recommended path; if you insist, it proceeds and records the authorized exception.</p></div>

@@ -21,15 +21,15 @@ Take the first word after `sdd-lite` as the command, read **only** that command 
 | `spec` | [commands/spec.md](commands/spec.md) | Choose and write the technical contract | `.../spec.md` |
 | `plan` | [commands/plan.md](commands/plan.md) | Split the spec into tasks | `.../plan.md` |
 | `bug` | [commands/bug.md](commands/bug.md) | One-step flow for a pinpoint bug (replaces feature → spec → plan) | `.specs/bugs/NNN-name/bug.md` |
-| `code` | [commands/code.md](commands/code.md) | Implement one task (feature **or** bug) | updates the checklist only |
+| `code` | [commands/code.md](commands/code.md) | Implement one task or Review correction (feature **or** bug) | appends execution status and evidence to `execution.md` in that workflow folder |
 | `review` | [commands/review.md](commands/review.md) | Audit the delivered work (feature **or** bug) | `review.md` in the feature/bug folder |
 
 No command, an unknown command, or `help`: list this table and ask which one to run. Do not guess.
 
 ## Flows
 
-- **Feature:** `feature → spec → plan → code → review` (artifacts: feature, spec, plan, review).
-- **Bug:** `bug → code → review` (artifacts: bug, review). The bug command triages first; if the problem is not a pinpoint bug it redirects to the feature flow.
+- **Feature:** `feature → spec → plan → code → review` (artifacts: feature, spec, plan, execution, review).
+- **Bug:** `bug → code → review` (artifacts: bug, execution, review). The bug command triages first; if the problem is not a pinpoint bug it redirects to the feature flow.
 - `code` and `review` serve both flows: the ID tells them which (`T…` = feature task, `B…` = bug task) and they work inside that item's folder.
 
 ## Shared rules (read when needed, not on every call)

@@ -24,9 +24,9 @@
 
 ## Tasks
 
-- [ ] **BNNN-01 — <outcome>.** **Acceptance:** given <state>, when <action>, then <observable result>. **Test:** <regression test expected to fail before the fix>. **Gate:** <focused checks from project-context>.
+- **BNNN-01 — <outcome>.** **Acceptance:** given <state>, when <action>, then <observable result>. **Test:** <regression test expected to fail before the fix>. **Gate:** <focused checks from project-context>.
 
-<Usually one task; add more only when they are independently verifiable. Code only checks these boxes.>
+<Usually one task; add more only when they are independently verifiable. Code records status and evidence in execution.md.>
 
 ## Notes
 

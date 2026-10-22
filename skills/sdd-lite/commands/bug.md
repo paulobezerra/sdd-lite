@@ -1,6 +1,6 @@
 # SDD Lite · Bug
 
-Short flow for a **pinpoint bug**: **Bug → Code → Review**, with one artifact, `.specs/bugs/NNN-name/bug.md`, in place of Feature → Spec → Plan. Read `.specs/project-context.md` (if missing, suggest `$sdd-lite init`), [workflow](../guidelines/workflow.md), [quality](../guidelines/quality.md), and the [template](../templates/bug.md). Read `.specs/implementation.md` for the project's conventions. This flow exists to save tokens and steps: do not add spec or plan files, and do not explore beyond the suspected area. This step diagnoses and writes the task list; it does not fix the bug. End after Bug.
+Short flow for a **pinpoint bug**: **Bug → Code → Review**. The Bug step writes `.specs/bugs/NNN-name/bug.md` as the diagnosis and task contract; Code records execution in that folder's `execution.md`, and Review writes `review.md`. Read `.specs/project-context.md` (if missing, suggest `$sdd-lite init`), [workflow](../guidelines/workflow.md), [quality](../guidelines/quality.md), and the [template](../templates/bug.md). Read `.specs/implementation.md` for the project's conventions. This flow exists to save tokens and steps: do not add spec or plan files, and do not explore beyond the suspected area. This step diagnoses and writes the task list; it does not fix the bug. End after Bug.
 
 Before starting, apply the [context isolation rule](../guidelines/workflow.md#recommended-isolation-clean-context-for-each-execution). If a previous execution's context is still present, briefly warn about the quality and traceability risk and recommend clearing the context, either here or in a new conversation. Do not block the user; if they explicitly insist on continuing with accumulated context, proceed and state in the delivery that they authorized the exception. Reconstruct state from versioned artifacts and the actual repository.
 
@@ -30,5 +30,5 @@ If any criterion fails, **do not continue**: explain which one failed and recomm
 
 ## 4. What happens next
 
-- `$sdd-lite code BNNN-01` executes the task and only ticks its checkbox in `bug.md`.
+- `$sdd-lite code BNNN-01` executes the task and records its status and evidence in `.specs/bugs/NNN-name/execution.md`; `bug.md` remains the approved diagnosis and task contract.
 - `$sdd-lite review <ID>` audits it and creates `review.md` in the same bug folder. Corrections found there go through `code` again.
