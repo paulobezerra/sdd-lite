@@ -71,6 +71,10 @@ docs/index.html   project home (GitHub Pages)
 
 Nothing project-specific lives in the skill; it all goes in your project's `.specs/`.
 
+## License
+
+SDD Lite is available under the [MIT License](./LICENSE).
+
 ## Publishing the docs
 
 GitHub Pages: **Settings → Pages → Deploy from a branch → `main` / `/docs`**.
