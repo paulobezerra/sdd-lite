@@ -2,8 +2,6 @@
 
 **ID:** NNN-name · **Status:** decision pending | proposed · **Date:** YYYY-MM-DD
 
-**User validation for Plan:** pending. After an explicit statement, record it here with the user's supplied name and the date obtained from the OS, without changing requirements or decisions. The technical decision below is not validation.
-
 ## Problem, baseline, and goal
 
 <who is affected; verified current behavior and code/contract reference; expected outcome>
@@ -45,9 +43,9 @@
 
 **Legend:** ✓ meets · ✗ does not meet · ⚠ partial or conditional fit. The option cards explain the evidence and implications behind every ⚠ and ✗. No scores or totals.
 
-**Recommendation (not approval):** <for multiple options, recommend only an option compatible with all hard constraints and explicit preferences; name decisive Feature criteria and accepted tradeoffs. If no option fits, state that and ask the minimum decision. For one evident solution, state its evidence-based justification and why relevant alternatives fail.>
+**Recommendation:** <for multiple options, recommend only an option compatible with all hard constraints and explicit preferences; name decisive Feature criteria and accepted tradeoffs. If no option fits, state that and ask the minimum decision. For one evident solution, state its evidence-based justification and why relevant alternatives fail.>
 
-**Decision requested:** <for multiple options, ask the user to choose or adjust; if no option fits, ask only the decision needed to resolve the conflict; for one evident solution, write “None — proceed with the only viable solution.” This is not Spec validation.>
+**Decision requested:** <for multiple options, ask the user to choose or adjust; if no option fits, ask only the decision needed to resolve the conflict; for one evident solution, write “None — proceed with the only viable solution.” This does not approve the Spec.>
 
 <When only one solution is viable, state verified evidence and why hard constraints rule out relevant alternatives; omit fake cards and matrix. Present this explanation in the user-facing delivery too, and proceed without asking the user to choose. For multiple viable options, the delivery must reproduce the complete cards and matrix from this brief before asking for a choice.>
 
@@ -59,9 +57,9 @@
 
 **Reason for the decision:** <verified evidence, decisive benefit, and accepted cost; for a single solution, explain why no relevant alternative exists>.
 
-## Open questions for validation
+## Open product questions
 
-<List product decisions or Feature deviations the user still needs to assess. For each, cite the prior contract, real options, impact, and current proposal. If none remain, write “None” so the check is visible before validation. Do not treat an earlier technical choice as Spec validation.>
+<List product decisions or Feature deviations the user still needs to assess. For each, cite the prior contract, real options, impact, and current proposal. If none remain, write “None” so the check is visible before approval. An earlier technical choice does not approve the Spec.>
 
 ## Requirements
 

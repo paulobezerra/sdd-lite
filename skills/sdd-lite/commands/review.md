@@ -2,7 +2,6 @@
 
 Audit a feature or a bug after its Code tasks, or re-audit requested corrections. Resolve the target from the ID or context (`.specs/features/NNN-name/` or `.specs/bugs/NNN-name/`; ask if ambiguous) and write `review.md` **inside that folder**. Read `.specs/project-context.md` (if missing, suggest `$sdd-lite init`), [workflow](../guidelines/workflow.md), [review](../guidelines/review.md), [quality](../guidelines/quality.md), `.specs/implementation.md` (the conventions the work is audited against), the [template](../templates/review.md), then the source artifacts: Feature, Spec, Plan, and `execution.md` for a feature, or `bug.md` and `execution.md` for a bug. This step records evidence and corrections in `review.md`; it does not implement corrections in the same execution.
 
-Before starting, apply the [context isolation rule](../guidelines/workflow.md#recommended-isolation-clean-context-for-each-execution). If a previous execution's context is still present, briefly warn about the quality and traceability risk and recommend clearing the context, either here or in a new conversation. Do not block the user; if they explicitly insist on continuing with accumulated context, proceed and state in the delivery that they authorized the exception. Reconstruct state from versioned artifacts and the actual repository. End after Review.
 
 ## 1. Fix the audit baseline
 
@@ -18,4 +17,4 @@ Before starting, apply the [context isolation rule](../guidelines/workflow.md#re
 ## 3. Record the conclusion
 
 1. Create `review.md` for the first audit; for re-audits, update that same file, preserving relevant IDs and decisions. Give each finding a stable ID, evidence, impact, sufficient correction, acceptance, and test. Reassess earlier findings in the file using current evidence. Do not commit or push during Review.
-2. **Do not change Feature, Spec, Plan, Bug, or `execution.md`.** Record proven and pending requirements in `review.md`; if there are no findings, record the conclusion and its limits. Do not ask the user to validate every correction or Code round. Deliver the link, state, and checks. Stop before Code.
+2. **Do not change Feature, Spec, Plan, Bug, or `execution.md`.** Record proven and pending requirements in `review.md`; if there are no findings, record the conclusion and its limits. Do not ask the user to validate every correction or Code round. Deliver the link, state, and checks. Continue into Code corrections only when the user explicitly included them in the requested scope.

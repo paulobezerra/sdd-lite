@@ -24,7 +24,7 @@ Take the first word after `sdd-lite` as the command, read **only** that command 
 | `code` | [commands/code.md](commands/code.md) | Implement one task or Review correction (feature **or** bug) | appends execution status and evidence to `execution.md` in that workflow folder |
 | `review` | [commands/review.md](commands/review.md) | Audit the delivered work (feature **or** bug) | `review.md` in the feature/bug folder |
 
-No command, an unknown command, or `help`: list this table and ask which one to run. Do not guess.
+No command, an unknown command, or `help`: list this table and ask which one to run. Do not guess. By default, execute only the requested command. If the user explicitly requests several commands, Code IDs, or the whole Plan, execute the requested scope in dependency order and preserve each stage gate; completing a step alone never authorizes the next one.
 
 ## Flows
 
@@ -34,7 +34,7 @@ No command, an unknown command, or `help`: list this table and ask which one to 
 
 ## Shared rules (read when needed, not on every call)
 
-- [guidelines/workflow.md](guidelines/workflow.md) — validation gates, immutability between steps, isolation, exceptions, branches, change policy. **Every command applies it.**
+- [guidelines/workflow.md](guidelines/workflow.md) — approval gates, immutability between steps, context guidance, stage write boundaries, branches, and change policy. **Every command applies it.**
 - [guidelines/specification.md](guidelines/specification.md) — used by `spec`.
 - [guidelines/quality.md](guidelines/quality.md) — used by `code`, `bug`, `review`.
 - [guidelines/review.md](guidelines/review.md) — used by `review`.

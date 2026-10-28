@@ -4,8 +4,6 @@
 
 **Branch:** `fix/NNN-name` <record the effective local branch>.
 
-**User validation to start Code:** pending. After an explicit statement, record it here with the user's name and the OS date, without changing the tasks.
-
 ## Problem
 
 <observed behavior vs expected behavior; who is affected; severity>
