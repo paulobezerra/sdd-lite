@@ -16,7 +16,7 @@ npx skills add paulobezerra/sdd-lite -g
 2. New capability: `$sdd-lite feature` → `spec` → `plan` → `code` → `review`.
 3. Pinpoint defect: `$sdd-lite bug` → `code` → `review`.
 
-Syntax: `$sdd-lite <command> [ID or free text]` in Codex, `/sdd-lite <command> ...` in Claude Code and similar agents. Run each command with a clean context (`/clear`).
+Syntax: `$sdd-lite <command> [ID or free text]` in Codex, `/sdd-lite <command> ...` in Claude Code and similar agents. A new chat or cleared context (`/clear`) is recommended for each command, but not required. You may explicitly request multiple commands or the whole Plan in one chat.
 
 ## Commands
 
@@ -27,7 +27,7 @@ Syntax: `$sdd-lite <command> [ID or free text]` in Codex, `/sdd-lite <command> .
 | `spec` | Grounds recommendations in Feature constraints; presents complete cards and a viability matrix for multiple viable options, or evidence for the single viable option | `…/spec.md` |
 | `plan` | Splits the spec into vertical tasks (`TNNN-XX`) | `…/plan.md` |
 | `bug` | Triage, root cause and a regression-test task (`BNNN-XX`); creates `fix/NNN-name`; does not fix | `.specs/bugs/NNN-name/bug.md` |
-| `code` | Implements **one** task, continues in-scope work, and records `PENDING` or `SUCCESS`, evidence, and handoff | appends to `execution.md` in the feature/bug folder |
+| `code` | Implements one task by default; an explicit request may cover multiple IDs or the whole Plan. Records `PENDING` or `SUCCESS`, evidence, and handoff | appends to `execution.md` in the feature/bug folder |
 | `review` | Independently audits the delivery against approved criteria, code, diff, and checks; re-audits corrections in the same file | `review.md` in the feature/bug folder |
 
 ## Flows
@@ -41,9 +41,9 @@ Bug:      bug → code → review                       (bug, execution, review)
 
 ## Rules in short
 
-- **Explicit validation** of Feature, Spec and Plan (or Bug) before Code, recorded in the artifact with your name and the OS date.
+- **Explicit approval** of Feature, Spec and Plan (or Bug) before the next stage, represented only by `Status: approved` in that artifact.
 - **Immutable inputs:** Each stage preserves approved upstream contracts. Code records status only in `execution.md`; Review checks those claims independently and records findings in `review.md`.
-- **Clean context** per execution; a warning, never a block.
+- **Context advice:** a new chat or cleared context is recommended, never required; context does not create a gate.
 - **Evidence over claims:** only checks actually run count.
 - **Never blocks you:** rule exceptions are explained and recorded when you insist.
 - **Safe by default:** no commit, push, deploy or destructive operation without your request.

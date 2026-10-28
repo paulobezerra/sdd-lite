@@ -78,7 +78,7 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
   <div class="grid g3">
     <div class="card"><span class="tag">1 · Install</span><h3>Once, globally</h3><p>Run the command above. The skill is available to every project and every agent that supports skills.</p></div>
     <div class="card"><span class="tag">2 · Init</span><h3><code>$sdd-lite init</code></h3><p>In an empty project it interviews you; in an existing one it analyzes the code. It writes the project context and the implementation conventions.</p></div>
-    <div class="card"><span class="tag">3 · Work</span><h3>Feature or bug</h3><p>Use <code>feature</code> for new capabilities and <code>bug</code> for pinpoint defects. Start each step with a clean context.</p></div>
+    <div class="card"><span class="tag">3 · Work</span><h3>Feature or bug</h3><p>Use <code>feature</code> for new capabilities and <code>bug</code> for pinpoint defects. A new chat or cleared context is recommended for each step, but not required.</p></div>
   </div>
   <p class="sub" style="margin-top:22px">Syntax: <code>$sdd-lite &lt;command&gt; [ID or free text]</code> in Codex, <code>/sdd-lite &lt;command&gt; …</code> in Claude Code and similar agents. With no command, the skill lists the options.</p>
 </div></section>
@@ -95,7 +95,7 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
     <div class="card">
       <span class="tag">Bug</span><h3>Pinpoint defect, local fix</h3>
       <div class="flow"><span class="step new">bug</span><span class="arrow">→</span><span class="step">code</span><span class="arrow">→</span><span class="step">review</span></div>
-      <p>Three artifacts: <code>bug</code>, <code>execution</code>, and <code>review</code>. One validation instead of three. <code>bug</code> triages first and redirects to the feature flow when the problem is not truly pinpoint, so it saves tokens without hiding real design work.</p>
+      <p>Three artifacts: <code>bug</code>, <code>execution</code>, and <code>review</code>. Bug approval is represented by its Status, with no duplicate approval field. <code>bug</code> triages first and redirects to the feature flow when the problem is not truly pinpoint, so it saves tokens without hiding real design work.</p>
     </div>
   </div>
   <p class="sub" style="margin-top:22px">Bug qualifies only if existing behavior contradicts a clear expectation, the cause is local, and the fix needs no contract change, migration, or design choice.</p>
@@ -145,11 +145,11 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--mut);tex
 <section id="rules"><div class="wrap">
   <h2>Rules that keep it honest</h2>
   <div class="grid g3">
-    <div class="card"><h3>Explicit validation</h3><p>Feature → Spec → Plan → Code (or Bug → Code) need your statement, recorded in the artifact with your name and the OS date. A checkbox or silence is not approval.</p></div>
+    <div class="card"><h3>Explicit approval</h3><p>Feature → Spec → Plan → Code (or Bug → Code) require explicit approval. The artifact header <code>Status: approved</code> is the only approval record; a technical choice or silence is not approval.</p></div>
     <div class="card"><h3>Immutable inputs</h3><p>Each stage preserves approved contracts. Code records status, changed paths, checks, and handoff in <code>execution.md</code>; Review independently verifies those claims and records findings in <code>review.md</code>.</p></div>
-    <div class="card"><h3>Clean context per step</h3><p>Each command starts from the artifacts and the real repository, not conversation memory. If context is dirty, you get a warning, never a block.</p></div>
-    <div class="card"><h3>Evidence, not claims</h3><p>Only checks actually run count. Code proves one task; the first review runs the full suite and gates. An unrun test is never reported as passed.</p></div>
-    <div class="card"><h3>Never blocks you</h3><p>Want to bend a rule? The agent explains the risk and the recommended path; if you insist, it proceeds and records the authorized exception.</p></div>
+    <div class="card"><h3>Context guidance</h3><p>A new chat or cleared context is recommended for each command, but never required. Multiple commands or the whole Plan may be requested in one chat. Artifact approvals and dependencies still apply.</p></div>
+    <div class="card"><h3>Evidence, not claims</h3><p>Only checks actually run count. Code proves one task by default, or each explicitly requested task with its own evidence; the first review runs the full suite and gates. An unrun test is never reported as passed.</p></div>
+    <div class="card"><h3>Workflow decisions</h3><p>Approval and dependency gates remain explicit. If you ask to change an approved workflow decision, the agent explains the impact and records it in the artifact for that stage.</p></div>
     <div class="card"><h3>Safe by default</h3><p>No commit, push, deploy or destructive operation without your request. No secrets in artifacts. No subagents or loops without authorization.</p></div>
   </div>
 </div></section>

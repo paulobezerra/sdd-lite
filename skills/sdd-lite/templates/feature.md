@@ -4,8 +4,6 @@
 
 **Branch:** `feature/NNN-name` <record the effective local branch>.
 
-**User validation for Spec:** pending. After an explicit statement, record it here with the user's supplied name and the date obtained from the OS, without changing the rest of the Feature.
-
 ## Business need
 
 <problem or opportunity, for whom, and why now>

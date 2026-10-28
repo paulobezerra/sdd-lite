@@ -2,8 +2,6 @@
 
 **Feature:** [feature.md](feature.md) · **Spec:** [spec.md](spec.md) · **Date:** YYYY-MM-DD · **Status:** open
 
-**User validation to start Code:** pending. After an explicit statement, record it here with the user's supplied name and the date obtained from the OS, without changing task scope.
-
 ## Delivery strategy
 
 <order and dependencies; how each increment delivers usable behavior without breaking existing behavior>
