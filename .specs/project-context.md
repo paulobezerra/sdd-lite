@@ -1,6 +1,6 @@
 # PROJECT CONTEXT — SDD Lite
 
-**Updated:** 2026-10-22 · **Origin:** existing project (analyzed) · **Artifact language:** English (`assumption`, following the existing documentation)
+**Updated:** 2026-11-08 · **Origin:** existing project (analyzed) · **Artifact language:** English (`assumption`, following the existing documentation)
 
 ## Purpose
 
@@ -25,6 +25,8 @@ SDD Lite is a globally installable agent skill for a lightweight, documented dev
 - **Publishing (documented, unverified):** configure GitHub Pages to deploy `main` / `/docs` in repository settings (`README.md`).
 
 ## Conventions
+
+The origin integration branch for new feature and bug branches is `origin/main` (explicitly selected by the user). Refresh it before creating task branches.
 
 Implementation rules live in [implementation.md](implementation.md).
 
