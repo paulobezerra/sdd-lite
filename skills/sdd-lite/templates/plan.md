@@ -8,7 +8,14 @@
 
 ## Tasks
 
-- **TNNN-01 — <delivered functional outcome>.** **Requirements:** <SNNN-XX covered>. **Precondition:** <required state>. **Scope:** <complete path, including relevant data/API/UI/docs>. **Acceptance:** given <state>, when <action>, then <observable result and relevant failures>. **TDD/characterization:** <test expected to fail before the change; legacy behavior to preserve, if any>. **Gate:** <focused tests and task checks under quality.md; name any broad gate required for this task>. **Dependencies:** <IDs or none>.
+- **TNNN-01 — <delivered functional outcome>.**
+  - **Requirements:** <SNNN-XX covered>.
+  - **Precondition:** <required state>.
+  - **Scope:** <complete path, including relevant data/API/UI/docs>.
+  - **Acceptance:** given <state>, when <action>, then <observable result and relevant failures>.
+  - **TDD/characterization:** <test expected to fail before the change; legacy behavior to preserve, if any>.
+  - **Gate:** <focused tests and task checks under quality.md; name any broad gate required for this task>.
+  - **Dependencies:** <IDs or none>.
 
 <Repeat the full format for each task. Do not add tasks for branches, isolated scaffolding, or formatting.>
 
